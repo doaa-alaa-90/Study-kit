@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 244 248 255;
+  --card: 255 255 255;
+  --field: 248 251 255;
+  --ink: 10 35 91;
+  --muted: 76 96 132;
+  --line: 218 229 247;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: 7 18 54;
+  --card: 14 33 83;
+  --field: 10 25 67;
+  --ink: 243 248 255;
+  --muted: 171 191 222;
+  --line: 39 69 132;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas text-ink antialiased transition-colors duration-300;
+    background-image: radial-gradient(circle at 8% 0%, rgb(7 155 250 / 0.09), transparent 28rem), radial-gradient(circle at 92% 12%, rgb(22 73 200 / 0.08), transparent 30rem);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  html[lang='ar'] body {
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  section[id] {
+    scroll-margin-top: 7rem;
+  }
+
+  ::selection {
+    background: rgb(7 155 250 / 0.22);
+    color: rgb(10 35 91);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-page-in {
+  animation: page-in 0.35s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.25s ease-out;
+}
+
+.animate-float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
